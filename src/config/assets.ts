@@ -1,9 +1,10 @@
 import { ResolverManifest } from "@pixi/assets";
+import { SCENE } from "../utils/enums";
 
 export const assetsManifest: ResolverManifest = {
     bundles: [
         {
-            name: 'preload',
+            name: SCENE.loading,
             assets: [
                 {
                     name: 'pixi-logo',

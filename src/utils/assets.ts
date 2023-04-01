@@ -1,13 +1,20 @@
 import { Assets, ResolverAssetsArray } from "@pixi/assets";
 import { assetsManifest } from "../config/assets";
+import { SCENE } from "./enums";
 
 
 export async function initAssets() {
     await Assets.init({ manifest: assetsManifest });
-    await Assets.loadBundle('preload');
+    await Assets.loadBundle(SCENE.loading);
 
     const allBundles = assetsManifest.bundles.map((item) => item.name);
     Assets.backgroundLoadBundle(allBundles);
+}
+
+export async function loadAssets(bundle: string) {
+    if (!isBundleLoaded(bundle)) {
+        await Assets.loadBundle(bundle);
+    }
 }
 
 export function isBundleLoaded(bundle: string) {
